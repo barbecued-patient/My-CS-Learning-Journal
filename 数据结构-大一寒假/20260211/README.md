@@ -44,7 +44,7 @@ void PostOrderTraversal (BinTree BT)
 }
 4.访问的顺序是一样的，区别在于什么时候给print出来
 
-四、二叉树的非递归遍历
+四、二叉树的非递归遍历-先序（中序后序略改print位置）
 void InOrderTraversal (BinTree BT)
 {
     BinTree T=BT;  //T是一个与BT同类型的临时指针，初始指向根结点，用于在遍历过程中移动。这样不改变原始根结点BT的值。
@@ -60,4 +60,19 @@ void InOrderTraversal (BinTree BT)
             T=T->Right;  将指针T指向当前结点的右孩子。下一轮外层循环将从右孩子开始，重复“一路向左压栈”的过程，从而实现右子树的中序遍历。
             }
       }
+}
+
+五、层序遍历
+void LevelOrderTraversal (BinTree BT)
+{
+    Queue Q; BinTree T;
+    if(!BT) return;
+    Q=CreatQueue(MaxSize);
+    AddQ(Q,BT);
+    while(!IsEmptyQ(Q)){
+        T=DeleteQ(Q);
+        printf("%d\n",T->Data);
+        if(T->Left) AddQ(Q,T->Left);
+        if(T->Right) AddQ(Q,T->Right);
+        }
 }
